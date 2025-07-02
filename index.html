@@ -3,50 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <title>3D Logo Viewer</title>
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <script type="module"
+          src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <style>
     html, body {
       height: 100%;
       width: 100%;
       margin: 0;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000; /* fallback in case poster fails */
+      background: #000;         /* fallback background */
+    }
+
+    .viewer-container {
+      height: 100vh;
+      width: 100vw;
     }
 
     model-viewer {
-      width: 100%;
       height: 100%;
+      width: 100%;
       display: block;
     }
   </style>
 </head>
 <body>
+
   <div class="viewer-container">
-    <model-viewer 
-      id="reveal"
-      loading="lazy"
-      poster="./LoadingLogo.gif"
-      reveal="manual"
-      camera-orbit="90deg 90deg 0deg"
-      src="Logo.glb"
-      alt="Logo Model"
-      shadow-intensity="1"
-      camera-controls
-      auto-rotate
-      touch-action="pan-y">
+    <model-viewer id="reveal"
+                  loading="lazy"
+                  poster="LoadingLogo.gif"
+                  reveal="manual"
+                  camera-orbit="90deg 90deg 0deg"
+                  src="Logo.glb"
+                  alt="Logo model"
+                  shadow-intensity="1"
+                  camera-controls
+                  auto-rotate
+                  touch-action="pan-y">
     </model-viewer>
   </div>
 
   <script>
-    const modelViewer = document.querySelector('#reveal');
-
-    // Automatically dismiss poster after 3 seconds
-    setTimeout(() => {
-      modelViewer.dismissPoster();
-    }, 3000);
+    const modelViewer = document.getElementById('reveal');
+    /* dismiss the poster after 3 s so the GLB starts loading */
+    setTimeout(() => modelViewer.dismissPoster(), 3000);
   </script>
+
 </body>
 </html>

@@ -11,12 +11,14 @@
       width: 100%;
       margin: 0;
       overflow: hidden;
+      background: transparent;
     }
 
     model-viewer {
       height: 100%;
       width: 100%;
       display: block;
+      background: transparent;
     }
   </style>
 </head>
@@ -38,7 +40,7 @@
   <script>
     const modelViewer = document.getElementById('reveal');
     /* dismiss the poster after 3 s so the GLB starts loading */
-    setTimeout(() => modelViewer.dismissPoster(), 3000);
+    setTimeout(() => modelViewer.dismissPoster(), 4000);
   </script>
 
 </body>

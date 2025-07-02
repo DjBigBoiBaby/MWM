@@ -19,17 +19,7 @@
       height: 100%;
       display: block;
     }
-#lazy-load-poster {
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    background-image: url("LoadingLogo.gif");
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                  }
+
   </style>
 </head>
 <body>
@@ -39,7 +29,8 @@
     <!-- Model viewer -->
   <model-viewer 
     id="reveal" loading="lazy" 
-    reveal="auto"
+    poster="loading.gif"
+    reveal="manual"
     camera-orbit="90deg 90deg 0deg"
     src="Logo.glb" 
     alt="Logo Model"
@@ -47,8 +38,13 @@
     camera-controls 
     auto-rotate 
     touch-action="pan-y">
-    <div id="lazy-load-poster" slot="poster"></div>
   </model-viewer>
+  <script>
+  const modelViewer  = document.querySelector('#reveal');
+  const autoDismiss = setTimeout(() => {
+    modelViewer.dismissPoster();
+  }, 3000);
+</script>
   </div>
 
 </body>

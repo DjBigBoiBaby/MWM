@@ -19,10 +19,39 @@
       height: 100%;
       display: block;
     }
+      .viewer-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    #reveal {
+      width: 100%;
+      height: 100%;
+    }
+
+    .loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
-    <model-viewer 
+      <div class="viewer-container">
+    <!-- Loading animation -->
+    <img src="mwm/loading.gif" alt="Loading..." class="loader" id="loadingGif">
+
+    <!-- Model viewer -->
+  <model-viewer 
     id="reveal" loading="lazy" poster="LoadingLogo.mp4" tone-mapping="aces"
     camera-orbit="90deg 90deg 0deg"
     src="Logo.glb" 
@@ -32,5 +61,17 @@
     auto-rotate 
     touch-action="pan-y">
   </model-viewer>
+  </div>
+
+  <script>
+    const viewer = document.getElementById('reveal');
+    const loader = document.getElementById('loadingGif');
+
+    // Hide loader when model is loaded
+    viewer.addEventListener('load', () => {
+      loader.classList.add('hidden');
+    });
+  </script>
+
 </body>
 </html>

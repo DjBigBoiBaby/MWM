@@ -10,12 +10,7 @@
       height: 100%;
       width: 100%;
       margin: 0;
-      overflow: hidden;       /* fallback background */
-    }
-
-    .viewer-container {
-      height: 100vh;
-      width: 100vw;
+      overflow: hidden;
     }
 
     model-viewer {
@@ -27,8 +22,7 @@
 </head>
 <body>
 
-  <div class="viewer-container">
-    <model-viewer id="reveal"
+   <model-viewer id="reveal"
                   loading="lazy"
                   poster="LoadingLogo.gif"
                   reveal="manual"
@@ -39,8 +33,7 @@
                   camera-controls
                   auto-rotate
                   touch-action="pan-y">
-    </model-viewer>
-  </div>
+   </model-viewer>
 
   <script>
     const modelViewer = document.getElementById('reveal');

@@ -46,31 +46,43 @@
   </style>
 </head>
 <body>
-      <div class="viewer-container">
+     <div class="viewer-container">
     <!-- Loading animation -->
     <img src="LoadingLogo.gif" alt="Loading..." class="loader" id="loadingGif">
 
-    <!-- Model viewer -->
-  <model-viewer 
-    id="reveal" loading="lazy" poster="LoadingLogo.gif" tone-mapping="aces"
-    camera-orbit="90deg 90deg 0deg"
-    src="Logo.glb" 
-    alt="Logo Model"
-    shadow-intensity="1" 
-    camera-controls 
-    auto-rotate 
-    touch-action="pan-y">
-  </model-viewer>
+    <!-- Model placeholder -->
+    <div id="modelSlot"></div>
   </div>
 
   <script>
-    const viewer = document.getElementById('reveal');
-    const loader = document.getElementById('loadingGif');
+    const loadingGif = document.getElementById('loadingGif');
+    const modelSlot = document.getElementById('modelSlot');
 
-    // Hide loader when model is loaded
-    viewer.addEventListener('load', () => {
-      loader.classList.add('hidden');
-    });
+    // Delay the model load
+    setTimeout(() => {
+      modelSlot.innerHTML = `
+        <model-viewer 
+          id="reveal"
+          loading="eager"
+          poster="LoadingLogo.gif"
+          tone-mapping="aces"
+          camera-orbit="90deg 90deg 0deg"
+          src="Logo.glb"
+          alt="Logo Model"
+          shadow-intensity="1"
+          camera-controls
+          auto-rotate
+          touch-action="pan-y"
+          interaction-prompt="none">
+        </model-viewer>
+      `;
+
+      // Wait for model to fully load
+      const viewer = document.getElementById('reveal');
+      viewer.addEventListener('load', () => {
+        loadingGif.classList.add('hidden');
+      });
+    }, 3000); // 3-second delay before model starts loading
   </script>
 
 </body>
